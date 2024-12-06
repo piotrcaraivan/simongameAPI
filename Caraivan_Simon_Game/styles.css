@@ -1,0 +1,199 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    color: #333333;
+}
+
+#score {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#startGame {
+    padding: 10px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid #333333;
+    border-radius: 8px;
+    width: 185px;
+    background-color: transparent;
+    color: #333333;
+    transition: all 0.3s ease;
+}
+
+#startGame:hover {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+#gameBoard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 10px;
+    margin-top: 30px;
+    width: 200px;
+}
+
+.colorButton {
+    width: 80px;
+    height: 80px;
+    border-radius: 6px;
+    opacity: 0.5;
+    background-color: #e0e0e0;
+    transition: opacity 0.4s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.colorButton:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.green {
+    background-color: #88c057;
+}
+
+.red {
+    background-color: #e57373;
+}
+
+.yellow {
+    background-color: #ffeb3b;
+}
+
+.blue {
+    background-color: #64b5f6;
+}
+
+.colorButton.active {
+    opacity: 1;
+    transform: scale(1.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+header {
+    width: 100%;
+    text-align: center;
+    background-color: #f7f7f7;
+    padding: 10px 0;
+    border-bottom: 2px solid #cccccc;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: #333333;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+#main-content {
+    padding-top: 60px;
+}
+
+#codexpl {
+    margin-top: 30px;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+}
+
+#codexpl th, #codexpl td {
+    border: 1px solid #333333;
+    padding: 12px 16px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+#codexpl th {
+    background-color: #f7f7f7;
+    font-weight: bold;
+}
+
+#codexpl td {
+    background-color: #ffffff;
+}
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666666;
+}
+
+
+@media (max-width: 768px) {
+    #gameBoard {
+        grid-template-columns: repeat(1, 1fr); 
+        gap: 15px;
+        width: auto;
+    }
+
+    .colorButton {
+        width: 100px; 
+        height: 100px;
+    }
+
+    #startGame {
+        font-size: 1.2rem; 
+        padding: 15px 40px;
+    }
+
+    nav ul {
+        flex-direction: column; 
+        gap: 10px;
+    }
+
+    nav ul li a {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #gameBoard {
+        gap: 10px; 
+    }
+
+    .colorButton {
+        width: 80px;
+        height: 80px;
+    }
+
+    nav ul li a {
+        font-size: 0.9rem; 
+    }
+
+    #startGame {
+        font-size: 1rem;
+        padding: 10px 30px;
+    }
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Simon Memory Game</title>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="info.html">О игре</a></li>
+                <li><a href="login.html">Вход</a></li>
+                <li><a href="register.html">Регистрация</a></li>
+                <li><a href="score.html">Рейтинг</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="maindiv">
+            <div id="score">
+                <span id="score-label">Ваш счет:</span>
+                <span id="score-value">0</span>
+            </div>
+            <button id="startGame">Начало игры</button>
+            <div id="gameBoard">
+                <!-- Each button corresponds to a color -->
+                <div class="colorButton green" data-color="green"></div>
+                <div class="colorButton red" data-color="red"></div>
+                <div class="colorButton yellow" data-color="yellow"></div>
+                <div class="colorButton blue" data-color="blue"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Simon Game Inc. Все права защищены.</p>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

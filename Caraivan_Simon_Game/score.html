@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Player Scores</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="info.html">О игре</a></li>
+      <li><a href="login.html">Вход</a></li>
+      <li><a href="register.html">Регистрация </a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h1>Player Scores</h1>
+  
+  <!-- Filter and Sorting Options -->
+  <section id="filters">
+    <input type="text" id="searchName" placeholder="Search by name">
+    <select id="sortOption">
+        <option value="scoreDesc">Score: High to Low</option>
+        <option value="scoreAsc">Score: Low to High</option>
+        <option value="nameAsc">Name: A-Z</option>
+        <option value="nameDesc">Name: Z-A</option>
+    </select>
+    <select id="colorSelect">
+        <option value="all">All Colors</option>
+        <option value="red">Red</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+        <option value="yellow">Yellow</option>
+    </select>
+    <button id="filterApply">Apply</button>
+</section>
+
+
+  <!-- Scores Table -->
+  <section id="scoreTable">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Score</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="scoreBody">
+        <!-- Dynamic Content -->
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Pagination -->
+  <section id="pagination">
+    <button id="prevPage">Previous</button>
+    <span id="pageInfo">Page 1 of 1</span>
+    <button id="nextPage">Next</button>
+  </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
