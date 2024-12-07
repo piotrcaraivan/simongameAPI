@@ -5,33 +5,27 @@ document.addEventListener('DOMContentLoaded', () => {
     let score = 0;
     let isDisplayingSequence = false;
 
-
     const playSound = (color) => {
         const audio = new Audio(`sounds/${color}.wav`);
         audio.play();
     };
-   
+
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 200) { // Если прокрутили больше 200px
+        if (window.scrollY > 200) {
             scrollToTopButton.style.display = 'block';
         } else {
             scrollToTopButton.style.display = 'none';
         }
     });
 
-    // Плавная прокрутка наверх
     const scrollToTopButton = document.getElementById('scrollToTop');
     if (scrollToTopButton) {
         scrollToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     } else {
         console.error('Кнопка "Наверх" не найдена в DOM.');
     }
-    
 
     const resetGame = () => {
         sequence = [];
@@ -71,9 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (button) {
             button.classList.add('active');
             playSound(color);
-            setTimeout(() => {
-                button.classList.remove('active');
-            }, 500);
+            setTimeout(() => button.classList.remove('active'), 500);
         } else {
             console.error(`Button for color "${color}" not found.`);
         }
@@ -105,22 +97,32 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Game board element not found.");
         }
     };
+
     const submitScore = async (score) => {
-        const user = localStorage.getItem('currentUser') || 'Anonymous';
+        const user = localStorage.getItem('currentUser');
+        const token = localStorage.getItem('authToken');
+    
+        if (!user || !token) {
+            alert('Пожалуйста, войдите, чтобы сохранить ваш результат.');
+            return;
+        }
     
         try {
-            const response = await fetch('https://d5dsv84kj5buag61adme.apigw.yandexcloud.net', {
+            const response = await fetch(`https://d5dsv84kj5buag61adme.apigw.yandexcloud.net/players/${user}`, {
                 method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ user, score }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`, // Передаем токен
+                },
+                body: JSON.stringify({ score }), // Передаем только значение score
             });
     
             if (!response.ok) {
-                throw new Error('Ошибка при отправке результата');
+                const errorMessage = await response.text();
+                throw new Error(`Ошибка при отправке результата: ${errorMessage}`);
             }
     
-            const result = await response.json();
-            console.log('Результат успешно отправлен:', result);
+            console.log('Результат успешно отправлен');
             alert('Ваш результат сохранён!');
         } catch (error) {
             console.error('Ошибка отправки:', error);
@@ -130,27 +132,32 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const handleUserInput = (event) => {
         if (isDisplayingSequence) return;
-    
+
         const clickedButton = event.target.closest('.colorButton');
         if (!clickedButton) {
             console.error("Clicked element is not a valid color button.");
             return;
         }
-    
+
         const clickedColor = clickedButton.getAttribute('data-color');
+        if (!clickedColor) {
+            console.error("Invalid button: Missing 'data-color' attribute.");
+            return;
+        }
+
         userSequence.push(clickedColor);
-    
+
         flashButton(clickedColor);
         playSound(clickedColor);
-    
+
         const currentStep = userSequence.length - 1;
         if (userSequence[currentStep] !== sequence[currentStep]) {
             alert('Incorrect! Game over.');
-            submitScore(score); // Отправляем результат
+            submitScore(score);
             resetGame();
             return;
         }
-    
+
         if (userSequence.length === sequence.length) {
             score++;
             updateScore();
@@ -159,7 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const startGame = () => {
-        console.log("Game started");
         resetGame();
         nextSequence();
     };
