@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Game Rules</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.png" type="image/png">
 </head>
 <body>
   <header>
@@ -21,33 +22,28 @@
 
   <main>
     <article>
+      <figure>
+        <img src="images/simon-says.jpg" alt="Illustration of game rules" class="centered-image">
+        <figcaption>Пример интерфейса и правил игры.</figcaption>
+      </figure>
       <h1>Правила игры</h1>
       <p>Добро пожаловать в игру! Следуйте этим простым правилам, чтобы играть и выигрывать:</p>
       <ol>
-        <li>Начните игру, нажав на кнопку <a href="game.html">Начало игры</a> кнопка.</li>
+        <li>Начните игру, нажав на кнопку "Начало игры".</li>
         <li>Внимательно следите за последовательностью цветов.</li>
-        <li>Повторите последовательность действий, нажимая на соответствующие цветные кнопки.</li>
-        <li>Зарабатывайте очки за каждую правильную последовательность. Если вы потерпите неудачу, вы проиграете игру.</li>
+        <li>Повторите последовательность, нажимая на соответствующие цветные кнопки.</li>
+        <li>Зарабатывайте очки за каждую правильную последовательность. Если вы ошибётесь, игра завершится.</li>
       </ol>
-      <p>Для получения дополнительной информации см. <a href="info.html">Раздел часто задаваемых вопросов</a> ниже.</p>
-
-      <figure>
-        <img src="game-rules.jpg" alt="Illustration of game rules" width="600">
-        <figcaption>Пример иллюстрации интерфейса и правил игры.</figcaption>
-      </figure>
     </article>
-
-    <section id="faq">
-      <h2>Часто задаваемые вопросы</h2>
-      <p><strong>Q: Как начать игру?</strong></p>
-      <p>A: Нажмите на кнопку <a href="game.html">Начало игры</a> кнопка на главной странице.</p>
-      <p><strong>Q: Что произойдет, если я проиграю?</strong></p>
-      <p>A: Ваш счет обнулится, и вы сможете повторить попытку.!</p>
-    </section>
+    
   </main>
 
   <footer>
     <p>&copy; 2024 Game Inc. Все права защищены.</p>
   </footer>
+
+  <script src="auth.js" defer></script>
+  <script src="game.js" defer></script>
+  <script src="leaderboard.js" defer></script>
 </body>
 </html>
