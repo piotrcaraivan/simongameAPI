@@ -29,6 +29,25 @@ body {
     color: #333333;
     transition: all 0.3s ease;
 }
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px; /* Отступ от нижнего края */
+    right: 20px; /* Отступ от правого края */
+    display: none; /* Скрыть кнопку по умолчанию */
+    background-color: #007bff; /* Синий цвет */
+    color: #fff; /* Белый текст */
+    border: none; /* Без рамки */
+    border-radius: 5px; /* Скруглённые углы */
+    padding: 10px 15px; /* Внутренние отступы */
+    cursor: pointer; /* Указатель при наведении */
+    font-size: 16px; /* Размер текста */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень */
+    z-index: 1000; /* Поверх остальных элементов */
+}
+
+.scroll-to-top:hover {
+    background-color: #0056b3; /* Тёмно-синий при наведении */
+}
 
 #startGame:hover {
     background-color: #333333;

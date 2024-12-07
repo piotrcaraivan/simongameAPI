@@ -5,10 +5,33 @@ document.addEventListener('DOMContentLoaded', () => {
     let score = 0;
     let isDisplayingSequence = false;
 
+
     const playSound = (color) => {
         const audio = new Audio(`sounds/${color}.wav`);
         audio.play();
     };
+   
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 200) { // Если прокрутили больше 200px
+            scrollToTopButton.style.display = 'block';
+        } else {
+            scrollToTopButton.style.display = 'none';
+        }
+    });
+
+    // Плавная прокрутка наверх
+    const scrollToTopButton = document.getElementById('scrollToTop');
+    if (scrollToTopButton) {
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    } else {
+        console.error('Кнопка "Наверх" не найдена в DOM.');
+    }
+    
 
     const resetGame = () => {
         sequence = [];
@@ -82,29 +105,52 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Game board element not found.");
         }
     };
-
+    const submitScore = async (score) => {
+        const user = localStorage.getItem('currentUser') || 'Anonymous';
+    
+        try {
+            const response = await fetch('https://d5dsv84kj5buag61adme.apigw.yandexcloud.net', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user, score }),
+            });
+    
+            if (!response.ok) {
+                throw new Error('Ошибка при отправке результата');
+            }
+    
+            const result = await response.json();
+            console.log('Результат успешно отправлен:', result);
+            alert('Ваш результат сохранён!');
+        } catch (error) {
+            console.error('Ошибка отправки:', error);
+            alert('Не удалось сохранить результат. Попробуйте позже.');
+        }
+    };
+    
     const handleUserInput = (event) => {
         if (isDisplayingSequence) return;
-
+    
         const clickedButton = event.target.closest('.colorButton');
         if (!clickedButton) {
             console.error("Clicked element is not a valid color button.");
             return;
         }
-
+    
         const clickedColor = clickedButton.getAttribute('data-color');
         userSequence.push(clickedColor);
-
+    
         flashButton(clickedColor);
         playSound(clickedColor);
-
+    
         const currentStep = userSequence.length - 1;
         if (userSequence[currentStep] !== sequence[currentStep]) {
             alert('Incorrect! Game over.');
+            submitScore(score); // Отправляем результат
             resetGame();
             return;
         }
-
+    
         if (userSequence.length === sequence.length) {
             score++;
             updateScore();

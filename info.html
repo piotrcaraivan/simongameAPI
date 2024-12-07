@@ -16,12 +16,15 @@
                 <li><a href="login.html">Вход</a></li>
                 <li><a href="register.html">Регистрация</a></li>
                 <li><a href="score.html">Рейтинг</a></li>
+                <li><a href="#rules">Правила игры</a></li> <!-- Ссылка на якорь -->
             </ul>
         </nav>
     </header>
-    
+
+    <button class="scroll-to-top" id="scrollToTop">Наверх</button>
+
     <main>
-        <article class="maindiv">
+        <article id="rules" class="maindiv"> <!-- Добавлен якорь через id -->
             <h1>Правила игры Simon Memory Game</h1>
             <p>Simon Memory Game — это игра, в которой ваша задача — запомнить последовательность цветов, показанную компьютером, и воспроизвести её.</p>
             <ol>
@@ -32,7 +35,7 @@
                 <li>Игра завершится, если вы ошибётесь в последовательности.</li>
             </ol>
             <figure>
-                <img src="simon-game-example.jpg" alt="Пример игры Simon Memory Game" width="600">
+                <img src="images/simon-says.jpg" alt="Пример игры Simon Memory Game" width="600">
                 <figcaption>Пример интерфейса игры Simon Memory Game.</figcaption>
             </figure>
             <p>Попробуйте свои силы и посмотрите, насколько далеко вы сможете продвинуться!</p>
@@ -43,7 +46,7 @@
     <footer>
         <p>&copy; 2024 Simon Game Inc. Все права защищены.</p>
     </footer>
-    
+    <script src="game.js" defer></script>
+
 </body>
 </html>
-
