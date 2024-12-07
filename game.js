@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
         try {
             const response = await fetch('https://d5dsv84kj5buag61adme.apigw.yandexcloud.net', {
-                method: 'POST',
+                method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ user, score }),
             });
