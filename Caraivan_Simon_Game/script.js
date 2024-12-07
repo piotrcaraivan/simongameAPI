@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         audio.play();
     };
 
-    // Fetch players and render the leaderboard
+    // Получение игроков и отображение таблицы лидеров
     const fetchPlayers = async () => {
         try {
             const response = await fetch(`${apiUrl}/players`);
@@ -113,7 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
             .map((b) => b.toString(16).padStart(2, "0"))
             .join("");
     };
-// Registration
+
+    // Registration
 const registerForm = document.getElementById('registerForm');
 if (registerForm) {
     registerForm.addEventListener('submit', async (event) => {
@@ -201,7 +202,7 @@ if (loginForm) {
         const button = document.querySelector(`.${color}`);
         if (button) {
             button.classList.add('active');
-            playSound(color); // Play sound when button flashes
+            playSound(color); 
             setTimeout(() => {
                 button.classList.remove('active');
             }, 500);
@@ -249,8 +250,8 @@ if (loginForm) {
         const clickedColor = clickedButton.getAttribute('data-color');
         userSequence.push(clickedColor);
     
-        flashButton(clickedColor); // Flash the button
-        playSound(clickedColor); // Play sound when user clicks
+        flashButton(clickedColor); 
+        playSound(clickedColor); 
     
         const currentStep = userSequence.length - 1;
         if (userSequence[currentStep] !== sequence[currentStep]) {
@@ -272,7 +273,7 @@ if (loginForm) {
         nextSequence();
     };
 
-    // Attach event listeners
+    // Прикрепите слушателей событий
     const startButton = document.getElementById('startGame');
     if (startButton) {
         startButton.addEventListener('click', startGame);
